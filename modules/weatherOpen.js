@@ -3,30 +3,21 @@ import {getLocation, showPosition, componentDidMount} from "./geoLocal.js"
 import config from '../config.js'; 
 import printDay from "./printDay.js";
 import {showTime, dateFormat, dateFormatD} from './hour.js';
-let latLon; 
-async function weatherOpen(city, country) {
- //console.log(`api: KEY: ${process.env.API_KEY}`);
-    const latLon = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city},${country}&limit=5&appid=${config.API_KEY}`)
-      .then((response) => (response.ok ? response.json() : Promise.reject(response)))
-      .then((data) => {
-        console.log(data[0].lat);
-        const latLon = { lat: data[0].lat, lon: data[0].lon };
-        return latLon;
-      })
-      .catch((err) => {
-        const message = err.statusText || 'Ocurrio un error';
-        alert(`Error ${err.status}: ${message}`);
-      });
-//     let lat,lon;
-//     let promise1 = new Promise(function(resolve, reject) {
-//     navigator.geolocation.getCurrentPosition(function(pos){
-//         lat = pos.coords.latitude
-//         lon = pos.coords.longitude
-//         resolve({lat,lon});
-//     }) 
-// })
 
-// promise1.then(latLon);
+async function weatherOpen(city, country, latLon) {
+ //console.log(`api: KEY: ${process.env.API_KEY}`);
+    // const latLon = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city},${country}&limit=5&appid=${config.API_KEY}`)
+    //   .then((response) => (response.ok ? response.json() : Promise.reject(response)))
+    //   .then((data) => {
+    //     console.log(data[0].lat);
+    //     const latLon = { lat: data[0].lat, lon: data[0].lon };
+    //     return latLon;
+    //   })
+    //   .catch((err) => {
+    //     const message = err.statusText || 'Ocurrio un error';
+    //     alert(`Error ${err.status}: ${message}`);
+    //   });
+   
 // componentDidMount().then(latLon);
 //      console.log(latLon);
     //const latLon = showPosition();
@@ -38,7 +29,7 @@ async function weatherOpen(city, country) {
     
 
 //   const locat =  navigator.geolocation.getCurrentPosition(success);
-//   console.log(locat);
+   console.log(latLon);
     await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latLon.lat}&longitude=${latLon.lon}&hourly=temperature_2m,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto`)
       .then((response) => (response.ok ? response.json() : Promise.reject(response)))
       .then((data) => {   

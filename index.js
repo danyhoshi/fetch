@@ -2,12 +2,19 @@
 // import me from "./img/medita.png";
 //import weatherNew from "./modules/weatherVC.js";
 // import './loadEnv.js';
+import { getPosition } from "./modules/geoLocal.js";
 import weathercode from "./modules/weathercode.js";
 import weatherOpen from "./modules/weatherOpen.js";
 const city = "Maracay";
 const country = "ve";
 
-weatherOpen(city, country);
+getPosition().then((latLon) => {
+  console.log(`desde la promesa lat: ${latLon.lat} y lon: ${latLon.lon}`);
+  weatherOpen(city, country, latLon);
+ }).catch(err => {
+    console.log(err);
+ });
+
 console.log(weathercode.get(3));
  let cloudy1 = document.createElement("img");
  let cloudy2 = document.createElement("img");

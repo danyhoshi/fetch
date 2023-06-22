@@ -33,6 +33,14 @@ export function showPosition(position) {
   }
 
   export async function componentDidMount(){
-    return position = await requestPosition();
-    
+    return position = await requestPosition(); 
+  }
+
+  export function getPosition(){
+    return new Promise(function(resolve, reject) {
+      navigator.geolocation.getCurrentPosition(function(pos){
+        let latLon = {lat: pos.coords.latitude, lon: pos.coords.longitude};
+        resolve(latLon);
+      }) 
+    })
   }
