@@ -1,6 +1,7 @@
 // import cd1 from "./img/cloudy-day-1.svg";
 // import me from "./img/medita.png";
 //import weatherNew from "./modules/weatherVC.js";
+// import './loadEnv.js';
 import weathercode from "./modules/weathercode.js";
 import weatherOpen from "./modules/weatherOpen.js";
 const city = "Maracay";

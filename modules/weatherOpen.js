@@ -1,9 +1,12 @@
-const cloudy = "./img/cloudy-day-1.svg";
 import weathercode from "./weathercode.js";
+import {getLocation, showPosition, componentDidMount} from "./geoLocal.js"
+import config from '../config.js'; 
 import printDay from "./printDay.js";
 import {showTime, dateFormat, dateFormatD} from './hour.js';
+let latLon; 
 async function weatherOpen(city, country) {
-    const latLon = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city},${country}&limit=5&appid=7b24199f0989325cac1e1e147b6a5b17`)
+ //console.log(`api: KEY: ${process.env.API_KEY}`);
+    const latLon = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city},${country}&limit=5&appid=${config.API_KEY}`)
       .then((response) => (response.ok ? response.json() : Promise.reject(response)))
       .then((data) => {
         console.log(data[0].lat);
@@ -14,8 +17,28 @@ async function weatherOpen(city, country) {
         const message = err.statusText || 'Ocurrio un error';
         alert(`Error ${err.status}: ${message}`);
       });
-    console.log(latLon);
-  
+//     let lat,lon;
+//     let promise1 = new Promise(function(resolve, reject) {
+//     navigator.geolocation.getCurrentPosition(function(pos){
+//         lat = pos.coords.latitude
+//         lon = pos.coords.longitude
+//         resolve({lat,lon});
+//     }) 
+// })
+
+// promise1.then(latLon);
+// componentDidMount().then(latLon);
+//      console.log(latLon);
+    //const latLon = showPosition();
+ //   console.log( getLocation() );
+//  const success = (position) =>{
+//   //console.log(position);
+//     latLon = {lat: position.coords.latitude, lon: position.coords.longitude};;
+//  }
+    
+
+//   const locat =  navigator.geolocation.getCurrentPosition(success);
+//   console.log(locat);
     await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latLon.lat}&longitude=${latLon.lon}&hourly=temperature_2m,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto`)
       .then((response) => (response.ok ? response.json() : Promise.reject(response)))
       .then((data) => {   

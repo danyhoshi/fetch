@@ -19,6 +19,9 @@
     "stylelint-csstree-validator": "^1.9.0",
     "stylelint-scss": "^3.21.0"
   },
-  "description": "", 
-  "type": "module"
+  "description": "",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
 }
