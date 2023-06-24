@@ -9,6 +9,7 @@ function printDay(city, dateF, tempMax, tempMin, weathercode) {
     ci.textContent = city;
     divToday.appendChild(ci);
     svg.src = weathercode;
+    console.log(`Weathercode en forecast: ${weathercode}`);
     svg.setAttribute("alt", "forecast");
     svg.setAttribute("width", 100);
     svg.setAttribute("height", 100);
@@ -19,6 +20,7 @@ function printDay(city, dateF, tempMax, tempMin, weathercode) {
     divToday.appendChild(maxMinTemp);
     const date = document.createElement("p");
     date.textContent = `${dateF}`;
+    console.log(`Fecha: ${dateF}`);
     divToday.appendChild(date);
     body.appendChild(divToday);
   }
