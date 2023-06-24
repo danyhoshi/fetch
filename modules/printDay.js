@@ -25,3 +25,11 @@ function printDay(city, dateF, tempMax, tempMin, weathercode) {
   
   export default printDay;
   
+  /* geoloc(cityinserted).then(response => {
+        getweather(response, hour).then(response => {
+            print(response);
+        })
+    
+    
+    
+    });*/ 
