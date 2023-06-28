@@ -90,8 +90,7 @@ const utcTimestamp = new Date().getTime();
 console.log(utcTimestamp); // 👉️ 16422369....
 const where = new Date(utcTimestamp);
 console.log(typeof where);
-console.log(`Estoy en ${where.toISOString()}`);
-console.log(Intl.DateTimeFormat().resolvedOptions().timeZone);
+console.log(`Estoy en ${where}`);
 
 // const gmtDateTime = new Date().toUTCString();
 // console.log(gmtDateTime); // 👉️ "Sat, 17 Dec 2022 12:18:44 GMT"
