@@ -5,8 +5,9 @@
 import { getPosition } from "./modules/geoLocal.js";
 import weathercode from "./modules/weathercode.js";
 import weatherOpen from "./modules/weatherOpen.js";
-const city = "Maracay";
-const country = "ve";
+import { showTimeDay } from "./modules/hour.js";
+const city = "Lima";
+const country = "pr";
 
 getPosition().then((latLon) => {
   console.log(`desde la promesa lat: ${latLon.lat} y lon: ${latLon.lon}`);
@@ -63,3 +64,34 @@ let myDate = new Date();
     
     // if (seconds < 10) seconds = "0" + seconds;
     console.log(hours + ":" + minutes + ":" + seconds);
+
+    const date = new Date();
+    
+
+// 👇️ returns UTC/GMT Hour of the date
+// console.log('UTC: ' + date.getUTCHours()); // 👉️ 7
+
+// const utcStr = new Date().toUTCString();
+// console.log('UTC completa: ' + utcStr); // 👉️ "Sat, 15 Jan 2022 16:17:30 GMT"
+
+const utcDate = '2023-06-27T20:41:23Z';
+
+const date1 = new Date(utcDate);
+
+showTimeDay('2023-06-28');
+
+// 👇️ "Sat Jan 15 2022 13:02:17 GMT+0200 (Eastern European Standard Time)"
+console.log(date1);
+
+// ✅ Convert to Local time
+console.log(date1.toLocaleString()); // 👉️ "1/15/2022, 1:02:17 PM
+
+const utcTimestamp = new Date().getTime();
+console.log(utcTimestamp); // 👉️ 16422369....
+const where = new Date(utcTimestamp);
+console.log(typeof where);
+console.log(`Estoy en ${where.toISOString()}`);
+console.log(Intl.DateTimeFormat().resolvedOptions().timeZone);
+
+// const gmtDateTime = new Date().toUTCString();
+// console.log(gmtDateTime); // 👉️ "Sat, 17 Dec 2022 12:18:44 GMT"

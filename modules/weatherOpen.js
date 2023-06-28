@@ -2,7 +2,7 @@ import weathercode from "./weathercode.js";
 import {getLocation, showPosition, componentDidMount} from "./geoLocal.js"
 import config from '../config.js'; 
 import printDay from "./printDay.js";
-import {showTime, dateFormat, dateFormatD} from './hour.js';
+import {showTime, dateFormat, dateFormatD, showTimeDay} from './hour.js';
 
 async function weatherOpen(city, country, latLon) {
  //console.log(`api: KEY: ${process.env.API_KEY}`);
@@ -41,7 +41,8 @@ async function weatherOpen(city, country, latLon) {
         const body = document.querySelector(".container");
         divSvg.classList.add("container-svg");
         let ci = document.createElement("h2");
-        ci.textContent = city;
+        //ci.textContent = city;
+        ci.textContent = showTimeDay(data.daily.time[0]);
         divToday.appendChild(ci);
         console.log(data.hourly.weathercode[showTime()]);
         console.log(
@@ -82,7 +83,8 @@ async function weatherOpen(city, country, latLon) {
         divToday.appendChild(date);
         body.appendChild(divToday);
       for (let ii = 1; ii < 5; ii++) {
-        printDay(city, dateFormatD(data.daily.time[ii]), data.daily.temperature_2m_max[ii], data.daily.temperature_2m_min[ii], weathercode.get(data.daily.weathercode[ii]));
+        console.log(typeof data.daily.time[ii]);
+        printDay(showTimeDay(data.daily.time[ii]), dateFormatD(data.daily.time[ii]), data.daily.temperature_2m_max[ii], data.daily.temperature_2m_min[ii], weathercode.get(data.daily.weathercode[ii]));
       }
       })
       .catch((err) => {
